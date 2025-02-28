@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBBY RACE CODE</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .tabs { display: flex; margin-bottom: 20px; }
+        .tab { padding: 10px; background: #ddd; margin-right: 5px; border-radius: 5px; cursor: pointer; }
+        .tab:hover { background: #bbb; }
+        .tab.active { background: #777; color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        textarea { width: 100%; height: 150px; margin-bottom: 10px; font-family: monospace; }
+        button { padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h2>LOOPABLE OBBY RACE LOGIC</h2>
+
+    <!-- Tabs for Different Categories -->
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab(1)">RULES BOARDS</div>
+        <div class="tab" onclick="switchTab(2)">LOBBY AREA - AVATAR PORTALS</div>
+        <div class="tab" onclick="switchTab(3)">LOBBY AREA - SET PLAYER NUMBER</div>
+        <div class="tab" onclick="switchTab(4)">RACE START AREA</div>
+        <div class="tab" onclick="switchTab(5)">DETECTIONS - CENTRE OF THE EXPERIENCE</div>
+        <div class="tab" onclick="switchTab(6)">FINISH FLAG + CHECK POINT</div>
+    </div>
+
+ <!-- Code Tab 1 -->
+<div class="tab-content active" id="tab1">
+    <h3>RULES BOARD - HUD</h3>
+
+    <div><textarea style="display:none;" readonly>
+
+   {
+  "GameplayData": {
+    "Version": 27,
+    "MajorVersion": 0,
+    "SaveData": "{\"GameplayDatas\":[{\"ID\":\"ffcc777c-659b-4b28-bc83-51d736366d62\",\"RulesetDatas\":[{\"TreeDatas\":[{\"DisplayName\":\"HUD\",\"PresetId\":\"HudStyleChangeTree\",\"Id\":\"5043d838-cad8-4949-af88-b0c7ab8ae6d4\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"HUD\",\"HudStyleChange\":\"{\\\"SlotSettings\\\":{\\\"int2(1, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"Personal Best Time\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Clock.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(1, 1)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"Last Time\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Racing_Flag.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(0, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"35a32d5c-6a04-4986-9254-29516de1eee8\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"JOIN RACE\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Exclamation-mark.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(2, 1)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"ead58baf-d869-4497-9a88-d67fda4288a7\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"FASTEST TIME\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Clock.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(2, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"3cc46901-320f-459d-b727-19a680a28af0\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"FASTEST RACER\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Star.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(2, 2)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"60fff6b9-dedb-4f91-be55-5b2f4c11843c\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"Racers In Game\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Dinosaur.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\"},\\\"SelectedStyleId\\\":\\\"DefaultStyle\\\"}\"}},{\"DisplayName\":\"HUD (1)\",\"PresetId\":\"HudStyleChangeTree\",\"Id\":\"e14a5edb-4926-48ad-8ad1-71c9fafe5a3f\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Registration.HUD\",\"HudStyleChange\":\"{\\\"SlotSettings\\\":{\\\"int2(1, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"Personal Best Time\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Clock.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(1, 1)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"Last Time\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Racing_Flag.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(0, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"f20da472-e84e-4629-aa8d-1cb221456601\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"REGISTRATION CLOSES IN\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Exclamation-mark.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(2, 1)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"ead58baf-d869-4497-9a88-d67fda4288a7\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"FASTEST TIME\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Clock.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(2, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"3cc46901-320f-459d-b727-19a680a28af0\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"FASTEST RACER\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Star.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\"},\\\"SelectedStyleId\\\":\\\"DefaultStyle\\\"}\"}},{\"DisplayName\":\"HUD (2)\",\"PresetId\":\"HudStyleChangeTree\",\"Id\":\"d4d32cc4-6ca9-4604-83c6-c29a806d1611\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Countdown.HUD\",\"HudStyleChange\":\"{\\\"SlotSettings\\\":{\\\"int2(1, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"Personal Best Time\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Clock.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(1, 1)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"Last Time\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Racing_Flag.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(0, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"f20da472-e84e-4629-aa8d-1cb221456601\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"RACE BEGINS IN\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Exclamation-mark.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(2, 1)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"ead58baf-d869-4497-9a88-d67fda4288a7\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"FASTEST TIME\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Clock.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(2, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"3cc46901-320f-459d-b727-19a680a28af0\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"FASTEST RACER\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Star.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\"},\\\"SelectedStyleId\\\":\\\"DefaultStyle\\\"}\"}},{\"DisplayName\":\"HUD (3)\",\"PresetId\":\"HudStyleChangeTree\",\"Id\":\"05b37b7b-c150-4475-8f62-7e46ba169ca7\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Race.HUD\",\"HudStyleChange\":\"{\\\"SlotSettings\\\":{\\\"int2(1, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"Personal Best Time\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Clock.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(1, 1)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"Last Time\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Racing_Flag.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(0, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"f20da472-e84e-4629-aa8d-1cb221456601\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"TIME LEFT\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Clock.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(2, 1)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"ead58baf-d869-4497-9a88-d67fda4288a7\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"FASTEST TIME\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Clock.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\",\\\"int2(2, 0)\\\":\\\"{\\\\\\\"BlackboardValue\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"BlackboardType\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"Id\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"3cc46901-320f-459d-b727-19a680a28af0\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"Team\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"HasTeam\\\\\\\\\\\\\\\":false}\\\\\\\",\\\\\\\"DisplayName\\\\\\\":\\\\\\\"\\\\\\\\\\\\\\\"FASTEST RACER\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"IconPath\\\\\\\":\\\\\\\"Icons/RulesVariables/Star.png\\\\\\\",\\\\\\\"Size\\\\\\\":\\\\\\\"2\\\\\\\",\\\\\\\"State\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ValueMode\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"ShowProgressBar\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"ShowValue\\\\\\\":\\\\\\\"True\\\\\\\",\\\\\\\"ShowVariableStateAnimation\\\\\\\":\\\\\\\"False\\\\\\\",\\\\\\\"TimerFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"FloatFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"BoolFormat\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"MinValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0.0\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"MaxValueValueSource\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"ValueSource\\\\\\\\\\\\\\\":2,\\\\\\\\\\\\\\\"SubSaveData\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"100.0\\\\\\\\\\\\\\\"}\\\\\\\"}\\\"},\\\"SelectedStyleId\\\":\\\"DefaultStyle\\\"}\"}},{\"DisplayName\":\"On player join\",\"PresetId\":\"OnPlayerEnterExperienceTrigger\",\"Id\":\"bee13caf-5c71-40df-89f6-098d4f205e45\",\"EnableDebugging\":false,\"TreeFieldData\":{\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Set.Personal.Time.To.5min\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Edit time value\",\"PresetId\":\"SetTimerTree\",\"Id\":\"22b07301-ecbe-4f2b-b040-d1b64a5da97a\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Personal.Time.To.5min\",\"Timer\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"NewValue\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"300.0\\\"}\"}},{\"DisplayName\":\"Store player name\",\"PresetId\":\"SetPlayerNameTree\",\"Id\":\"d3af22ab-8064-46d1-a006-85cda194d5b0\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"HUD\",\"TextParameter\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"53949b1b-124d-4e60-be4b-9234b44ab0ae\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\"}}],\"DisplayName\":\"HUD\",\"Description\":null,\"EnableDebugging\":false,\"Id\":\"c936b2a5-45a4-4d70-880a-d4f433cee745\"}],\"version\":-1,\"dataID\":null}]}"
+  },
+  "Type": 0,
+  "Messages": {
+    "Version": 2,
+    "MajorVersion": 0,
+    "SaveData": "[{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"HUD\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Registration.HUD\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Countdown.HUD\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Race.HUD\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Time.To.5min\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Time.To.5min\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"HUD\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false}]"
+  },
+  "Fields": {
+    "Version": 10,
+    "MajorVersion": 0,
+    "SaveData": "{\"Fields\":[{\"Id\":\"696bcc10-adb2-4124-9379-268dde220bcf\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Personal Best Time\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Personal Race Time\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"35a32d5c-6a04-4986-9254-29516de1eee8\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Race Status\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"JOIN RACE\",\"FieldType\":3,\"IsPersistent\":false},{\"Id\":\"ead58baf-d869-4497-9a88-d67fda4288a7\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Instance Best\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"3cc46901-320f-459d-b727-19a680a28af0\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Fastest Racer\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"\",\"FieldType\":3,\"IsPersistent\":false},{\"Id\":\"60fff6b9-dedb-4f91-be55-5b2f4c11843c\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Racers In Game\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"0\",\"FieldType\":1,\"IsPersistent\":false},{\"Id\":\"f20da472-e84e-4629-aa8d-1cb221456601\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Global Time\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"53949b1b-124d-4e60-be4b-9234b44ab0ae\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Player Name\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"\",\"FieldType\":3,\"IsPersistent\":false}],\"version\":-1,\"dataID\":null}"
+  }
+}
+
+    </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+    
+
+    <br><br> <!-- Adds space between buttons -->
+
+	<h3>RULES BOARD - RACE REGISTRATION</h3>
+	
+    <div><textarea style="display:none;" readonly>
+
+    {
+  "GameplayData": {
+    "Version": 27,
+    "MajorVersion": 0,
+    "SaveData": "{\"GameplayDatas\":[{\"ID\":\"e189cf2b-c194-4402-9af0-12a4e361c682\",\"RulesetDatas\":[{\"TreeDatas\":[{\"DisplayName\":\"Start timer\",\"PresetId\":\"StartTimerTree\",\"Id\":\"7f99255b-14cb-4b4b-9e0f-0142ce5d83cd\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Start.Registration.Countdown\",\"Timer\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"f20da472-e84e-4629-aa8d-1cb221456601\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"15.0\\\"}\",\"StopTriggerMessage\":null,\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Teleport.Players\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Start timer (1)\",\"PresetId\":\"StartTimerTree\",\"Id\":\"1bb584aa-42a7-4f9a-bd02-c4408f227521\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Teleport.Players\",\"Timer\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"f20da472-e84e-4629-aa8d-1cb221456601\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"10.0\\\"}\",\"StopTriggerMessage\":null,\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Start.Race\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Start timer (2)\",\"PresetId\":\"StartTimerTree\",\"Id\":\"fd78876b-73d9-4717-a5a4-a471fd4cea3c\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Start.Race\",\"Timer\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"f20da472-e84e-4629-aa8d-1cb221456601\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"240.0\\\"}\",\"StopTriggerMessage\":null,\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"End.Race\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Send message\",\"PresetId\":\"MessageOnMessageTree\",\"Id\":\"ced75f21-1958-461a-8e65-8e9f63b48922\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"End.Race\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Reset.Race\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":\\\"0\\\",\\\"Team\\\":\\\"\\\",\\\"Tags\\\":\\\"{\\\\\\\"Values\\\\\\\":[\\\\\\\"\\\\\\\"]}\\\"}\"}},{\"DisplayName\":\"Stopwatch\",\"PresetId\":\"StartStopwatchTree\",\"Id\":\"9c8926af-ef12-4340-8a5d-35fba79deb3b\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Start.Race\",\"Timer\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"27ecd67b-8b49-4792-b464-9f2bb64069eb\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"StopTriggerMessage\":\"End.Race\"}},{\"DisplayName\":\"Compare numbers\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"f9d387e2-7e27-4024-85ad-8bc30c8cbb52\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Countdown.HUD\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"0a444d8e-eb2b-4c8c-9c40-1b374882d65f\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"1.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Check.Player.Number\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Start timer (3)\",\"PresetId\":\"StartTimerTree\",\"Id\":\"ee582d68-5546-4e4c-b923-4b4feb73349f\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Teleport.Players\",\"Timer\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"d52befc4-70f0-458d-b821-041e7d05f28e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"2.0\\\"}\",\"StopTriggerMessage\":null,\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Apply.Tags\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}}],\"DisplayName\":\"RACE REGISTRATION\",\"Description\":null,\"EnableDebugging\":false,\"Id\":\"8e05d800-f744-416d-98a2-148c25d84e59\"}],\"version\":-1,\"dataID\":null}]}"
+  },
+  "Type": 0,
+  "Messages": {
+    "Version": 2,
+    "MajorVersion": 0,
+    "SaveData": "[{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Start.Registration.Countdown\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Teleport.Players\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Teleport.Players\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Start.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Start.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"End.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"End.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Reset.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Start.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"End.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Countdown.HUD\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Teleport.Players\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Apply.Tags\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false}]"
+  },
+  "Fields": {
+    "Version": 10,
+    "MajorVersion": 0,
+    "SaveData": "{\"Fields\":[{\"Id\":\"f20da472-e84e-4629-aa8d-1cb221456601\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Global Time\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"27ecd67b-8b49-4792-b464-9f2bb64069eb\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"STOPWATCH\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"0a444d8e-eb2b-4c8c-9c40-1b374882d65f\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Registration\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"0\",\"FieldType\":1,\"IsPersistent\":false},{\"Id\":\"d52befc4-70f0-458d-b821-041e7d05f28e\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"2nd Timer\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false}],\"version\":-1,\"dataID\":null}"
+  }
+}
+
+    </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+    
+	
+	
+	
+	<br><br> <!-- Adds space between buttons -->
+
+	<h3>RULES BOARD - PERSONAL BEST SCORE</h3>
+	
+    <div><textarea style="display:none;" readonly>
+
+   {
+  "GameplayData": {
+    "Version": 27,
+    "MajorVersion": 0,
+    "SaveData": "{\"GameplayDatas\":[{\"ID\":\"6c5eea3f-6094-4a70-aa21-1439532d8832\",\"RulesetDatas\":[{\"TreeDatas\":[{\"DisplayName\":\"Compare numbers\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"b213dc71-e91d-4d25-a447-92cdb53a5d65\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Victory\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"ff8ae8ba-b6d4-4a10-9d91-171340e64bfd\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"0.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Set.Personal.Best\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (1)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"81f9878a-d9a3-4edc-88bc-7694083f7aa8\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Victory\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"ff8ae8ba-b6d4-4a10-9d91-171340e64bfd\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"2\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"0.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Check.Personal.Time\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Math\",\"PresetId\":\"MathTree\",\"Id\":\"ff885ff3-281f-4d9e-8ae5-753f293c33a4\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Personal.Best\",\"MathOperand1\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":1,\\\\\\\"Id\\\\\\\":\\\\\\\"ff8ae8ba-b6d4-4a10-9d91-171340e64bfd\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\",\"MathOperator\":\"0\",\"MathOperand2\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"1.0\\\"}\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"ff8ae8ba-b6d4-4a10-9d91-171340e64bfd\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Edit time value\",\"PresetId\":\"SetTimerTree\",\"Id\":\"c3bc210c-29e7-480b-a78f-c1f69286e649\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Victory\",\"Timer\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"NewValue\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":0,\\\\\\\"Id\\\\\\\":\\\\\\\"27ecd67b-8b49-4792-b464-9f2bb64069eb\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\"}},{\"DisplayName\":\"Compare numbers\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"11b80cb0-805c-41b6-8675-974a74b785bd\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Personal.Time\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"2\",\"ValueSource\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":1,\\\\\\\"Id\\\\\\\":\\\\\\\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Set.Personal.Best\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (1)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"85998c38-3825-4dbc-a332-a10f40922bb3\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Personal.Time\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"4\",\"ValueSource\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":1,\\\\\\\"Id\\\\\\\":\\\\\\\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Victory\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (2)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"4b66874b-f93b-4177-a10f-689dd43a8187\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Personal.Time\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":1,\\\\\\\"Id\\\\\\\":\\\\\\\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Victory\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Edit number value (1)\",\"PresetId\":\"SetValueTree\",\"Id\":\"f62e268d-7058-42ee-8c1b-4af18a494dc3\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Personal.Best\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"SetValue\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":1,\\\\\\\"Id\\\\\\\":\\\\\\\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\"}},{\"DisplayName\":\"Send message (1)\",\"PresetId\":\"MessageOnMessageTree\",\"Id\":\"29d4a73b-0239-41b1-8cb8-4b53afe68aa6\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Personal.Best\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Local.Player.Banner\\\",\\\"ArgumentsData\\\":[\\\"{\\\\\\\"ValueSource\\\\\\\":2,\\\\\\\"SubSaveData\\\\\\\":\\\\\\\"3\\\\\\\"}\\\",\\\"{\\\\\\\"ValueSource\\\\\\\":2,\\\\\\\"SubSaveData\\\\\\\":\\\\\\\"FINISH! <br>New personal best.\\\\\\\"}\\\"],\\\"BroadcastType\\\":\\\"1\\\",\\\"Team\\\":\\\"\\\",\\\"Tags\\\":\\\"{\\\\\\\"Values\\\\\\\":[\\\\\\\"\\\\\\\"]}\\\"}\"}},{\"DisplayName\":\"Send message\",\"PresetId\":\"MessageOnMessageTree\",\"Id\":\"7528b84b-0cfa-4339-8c93-df45cdc6f237\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Personal.Best\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Gap1\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":\\\"0\\\",\\\"Team\\\":\\\"\\\",\\\"Tags\\\":\\\"{\\\\\\\"Values\\\\\\\":[\\\\\\\"\\\\\\\"]}\\\"}\"}},{\"DisplayName\":\"Send message (2)\",\"PresetId\":\"MessageOnMessageTree\",\"Id\":\"3c6fd87a-00b2-418b-862e-2dc1b1b63bf0\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Gap1\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Victory\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":\\\"0\\\",\\\"Team\\\":\\\"\\\",\\\"Tags\\\":\\\"{\\\\\\\"Values\\\\\\\":[\\\\\\\"\\\\\\\"]}\\\"}\"}}],\"DisplayName\":\"Check Personal Best First Race\",\"Description\":null,\"EnableDebugging\":false,\"Id\":\"8d0ef8ae-8340-4d39-a6e0-bbe0751b1409\"}],\"version\":-1,\"dataID\":null}]}"
+  },
+  "Type": 0,
+  "Messages": {
+    "Version": 2,
+    "MajorVersion": 0,
+    "SaveData": "[{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Victory\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Victory\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Personal.Time\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Victory\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Personal.Time\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Personal.Time\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Victory\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Personal.Time\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Victory\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Local.Player.Banner\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[{\"Type\":\"Int\",\"DefaultValue\":0,\"DisplayName\":\"Seconds\",\"UIConfigParameters\":null},{\"Type\":\"HashedString\",\"DefaultValue\":\"\",\"DisplayName\":\"Text\",\"UIConfigParameters\":null}],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Gap1\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Gap1\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Victory\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false}]"
+  },
+  "Fields": {
+    "Version": 10,
+    "MajorVersion": 0,
+    "SaveData": "{\"Fields\":[{\"Id\":\"ff8ae8ba-b6d4-4a10-9d91-171340e64bfd\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"PB First Time\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"0\",\"FieldType\":1,\"IsPersistent\":false},{\"Id\":\"d75e3ef3-3408-4a5e-83fd-9ffb0a841314\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Personal Race Time\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"27ecd67b-8b49-4792-b464-9f2bb64069eb\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"STOPWATCH\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"696bcc10-adb2-4124-9379-268dde220bcf\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Personal Best Time\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false}],\"version\":-1,\"dataID\":null}"
+  }
+}
+
+    </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+  
+	
+	
+	
+	
+	<br><br> <!-- Adds space between buttons -->
+
+	<h3>RULES BOARD - INSTANCE BEST SCORE</h3>
+	
+    <div><textarea style="display:none;" readonly>
+
+    {
+  "GameplayData": {
+    "Version": 27,
+    "MajorVersion": 0,
+    "SaveData": "{\"GameplayDatas\":[{\"ID\":\"d00e77af-0679-48a5-9b74-aa973c2c6a6e\",\"RulesetDatas\":[{\"TreeDatas\":[{\"DisplayName\":\"Compare numbers\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"942fd556-3f7b-4d9c-87ae-4bce9a61dde8\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Personal.Best\",\"Score\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"b44e2932-8e01-462c-90d9-45679d167bd5\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"0.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Set.Instance.Best\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (1)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"8c5c1629-76a9-4bb6-815c-53d69e5307f1\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Personal.Best\",\"Score\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"b44e2932-8e01-462c-90d9-45679d167bd5\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"2\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"0.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Check.Instance.Best\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Math\",\"PresetId\":\"MathTree\",\"Id\":\"ae138304-56e9-49fd-9939-83ad2135d681\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Personal.Best\",\"MathOperand1\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":0,\\\\\\\"Id\\\\\\\":\\\\\\\"b44e2932-8e01-462c-90d9-45679d167bd5\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\",\"MathOperator\":\"0\",\"MathOperand2\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"1.0\\\"}\",\"Score\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"b44e2932-8e01-462c-90d9-45679d167bd5\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"e7129747-951a-4a6b-99aa-faec0cbfad3e\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Instance.Best\",\"Score\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"ead58baf-d869-4497-9a88-d67fda4288a7\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"2\",\"ValueSource\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":1,\\\\\\\"Id\\\\\\\":\\\\\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Set.Instance.Best\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Edit number value\",\"PresetId\":\"SetValueTree\",\"Id\":\"9ee1a0c1-860b-4779-b80d-6a15cd9a3bc1\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Instance.Best\",\"Score\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"ead58baf-d869-4497-9a88-d67fda4288a7\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"SetValue\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":1,\\\\\\\"Id\\\\\\\":\\\\\\\"696bcc10-adb2-4124-9379-268dde220bcf\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\"}},{\"DisplayName\":\"Edit text value\",\"PresetId\":\"SetTextTree\",\"Id\":\"dd4bbdb4-14c5-4d41-a6e5-5ccf8838559c\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Set.Instance.Best\",\"TextParameter\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"3cc46901-320f-459d-b727-19a680a28af0\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"ValueSource\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":1,\\\\\\\"Id\\\\\\\":\\\\\\\"53949b1b-124d-4e60-be4b-9234b44ab0ae\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\"}},{\"DisplayName\":\"Edit number value\",\"PresetId\":\"SetValueTree\",\"Id\":\"491f59ee-866c-452a-b37d-eb482c5ece58\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Victory\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"46c91031-d46b-46e5-94a8-a10679e26677\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"SetValue\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":0,\\\\\\\"Id\\\\\\\":\\\\\\\"f20da472-e84e-4629-aa8d-1cb221456601\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\"}},{\"DisplayName\":\"Start timer\",\"PresetId\":\"StartTimerTree\",\"Id\":\"9fc5885f-be3f-4c7d-964a-a95b422ea540\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Victory\",\"Timer\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"47c3f7e7-2fa7-4247-8600-d3da1201f1f2\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"5.0\\\"}\",\"StopTriggerMessage\":null,\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TeleportToLobby\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}}],\"DisplayName\":\"Check If Instance Best has been set before\",\"Description\":null,\"EnableDebugging\":false,\"Id\":\"a5d22e69-c2f9-4871-bfba-5475a1efa29e\"}],\"version\":-1,\"dataID\":null}]}"
+  },
+  "Type": 0,
+  "Messages": {
+    "Version": 2,
+    "MajorVersion": 0,
+    "SaveData": "[{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Instance.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Instance.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Personal.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Instance.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Instance.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Instance.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Set.Instance.Best\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Victory\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Victory\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TeleportToLobby\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false}]"
+  },
+  "Fields": {
+    "Version": 10,
+    "MajorVersion": 0,
+    "SaveData": "{\"Fields\":[{\"Id\":\"b44e2932-8e01-462c-90d9-45679d167bd5\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Instance Best 1st Time\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"0\",\"FieldType\":1,\"IsPersistent\":false},{\"Id\":\"ead58baf-d869-4497-9a88-d67fda4288a7\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Instance Best\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"696bcc10-adb2-4124-9379-268dde220bcf\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Personal Best Time\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"3cc46901-320f-459d-b727-19a680a28af0\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Fastest Racer\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"\",\"FieldType\":3,\"IsPersistent\":false},{\"Id\":\"53949b1b-124d-4e60-be4b-9234b44ab0ae\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Player Name\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"\",\"FieldType\":3,\"IsPersistent\":false},{\"Id\":\"46c91031-d46b-46e5-94a8-a10679e26677\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Players Race Time\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"f20da472-e84e-4629-aa8d-1cb221456601\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Global Time\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"47c3f7e7-2fa7-4247-8600-d3da1201f1f2\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Personal Timer 2\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false}],\"version\":-1,\"dataID\":null}"
+  }
+}
+
+    </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+   
+	
+
+
+<br><br> <!-- Adds space between buttons -->
+
+	<h3>RULES BOARD - CHECK RACERS</h3>
+	
+    <div><textarea style="display:none;" readonly>
+
+    {
+  "GameplayData": {
+    "Version": 27,
+    "MajorVersion": 0,
+    "SaveData": "{\"GameplayDatas\":[{\"ID\":\"2312deba-a7e0-4304-b67d-dffca2e98bfe\",\"RulesetDatas\":[{\"TreeDatas\":[{\"DisplayName\":\"Math\",\"PresetId\":\"MathTree\",\"Id\":\"2fc9d5d3-4bcc-458c-9927-57acedc9ccdd\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Racer\",\"MathOperand1\":\"{\\\"ValueSource\\\":0,\\\"SubSaveData\\\":\\\"{\\\\\\\"BlackboardType\\\\\\\":0,\\\\\\\"Id\\\\\\\":\\\\\\\"60fff6b9-dedb-4f91-be55-5b2f4c11843c\\\\\\\",\\\\\\\"Team\\\\\\\":0,\\\\\\\"HasTeam\\\\\\\":false}\\\"}\",\"MathOperator\":\"0\",\"MathOperand2\":\"{\\\"ValueSource\\\":1,\\\"SubSaveData\\\":\\\"{\\\\\\\"MessageId\\\\\\\":\\\\\\\"Racer\\\\\\\",\\\\\\\"Field\\\\\\\":{\\\\\\\"Type\\\\\\\":\\\\\\\"Int\\\\\\\",\\\\\\\"DefaultValue\\\\\\\":0,\\\\\\\"DisplayName\\\\\\\":\\\\\\\"Racer\\\\\\\",\\\\\\\"UIConfigParameters\\\\\\\":null}}\\\"}\",\"Score\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"60fff6b9-dedb-4f91-be55-5b2f4c11843c\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Racer.Check.Timer\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Start timer\",\"PresetId\":\"StartTimerTree\",\"Id\":\"d1c8bb12-3e21-4c46-891f-ff2acbce4a4e\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Racer.Check.Timer\",\"Timer\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"d52befc4-70f0-458d-b821-041e7d05f28e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"2.0\\\"}\",\"StopTriggerMessage\":null,\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Check.Total\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"6d96728b-14f6-48da-997d-d27772792e0d\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Total\",\"Score\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"60fff6b9-dedb-4f91-be55-5b2f4c11843c\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"5\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"0.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"Shorten.Race\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Start timer (1)\",\"PresetId\":\"StartTimerTree\",\"Id\":\"4257bdda-f2ea-498c-974f-7ddbf0516ca2\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Shorten.Race\",\"Timer\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"f20da472-e84e-4629-aa8d-1cb221456601\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"3.0\\\"}\",\"StopTriggerMessage\":null,\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"End.Race\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}}],\"DisplayName\":\"CHECK RACERS IN GAME\",\"Description\":null,\"EnableDebugging\":false,\"Id\":\"e53848dd-d6ef-4693-a171-5f68ae01c114\"}],\"version\":-1,\"dataID\":null}]}"
+  },
+  "Type": 0,
+  "Messages": {
+    "Version": 2,
+    "MajorVersion": 0,
+    "SaveData": "[{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Racer\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[{\"Type\":\"Int\",\"DefaultValue\":0,\"DisplayName\":\"Racer\",\"UIConfigParameters\":null}],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Racer.Check.Timer\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Racer.Check.Timer\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Total\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Total\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Shorten.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Shorten.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"End.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false}]"
+  },
+  "Fields": {
+    "Version": 10,
+    "MajorVersion": 0,
+    "SaveData": "{\"Fields\":[{\"Id\":\"60fff6b9-dedb-4f91-be55-5b2f4c11843c\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Racers In Game\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"0\",\"FieldType\":1,\"IsPersistent\":false},{\"Id\":\"d52befc4-70f0-458d-b821-041e7d05f28e\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"2nd Timer\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false},{\"Id\":\"f20da472-e84e-4629-aa8d-1cb221456601\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Global Time\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false}],\"version\":-1,\"dataID\":null}"
+  }
+}
+
+    </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+    <button onclick="copyCode(this)">Copy</button>
+	
+	
+	
+	
+	<br><br> <!-- Adds space between buttons -->
+
+	<h3>RULES BOARD - RESET RACE STATS</h3>
+	
+    <div><textarea style="display:none;" readonly>
+
+    {
+  "GameplayData": {
+    "Version": 27,
+    "MajorVersion": 0,
+    "SaveData": "{\"GameplayDatas\":[{\"ID\":\"6d3ab71b-d903-4e1f-9ec0-9a6e0027f06a\",\"RulesetDatas\":[{\"TreeDatas\":[{\"DisplayName\":\"Edit number value (2)\",\"PresetId\":\"SetValueTree\",\"Id\":\"c38704e8-0d30-4400-b48e-de3de109e51f\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"SetValue\":\"{\\\"ValueSource\\\":1,\\\"SubSaveData\\\":\\\"{\\\\\\\"MessageId\\\\\\\":\\\\\\\"Player.Number\\\\\\\",\\\\\\\"Field\\\\\\\":{\\\\\\\"Type\\\\\\\":\\\\\\\"Int\\\\\\\",\\\\\\\"DefaultValue\\\\\\\":0,\\\\\\\"DisplayName\\\\\\\":\\\\\\\"Player Number\\\\\\\",\\\\\\\"UIConfigParameters\\\\\\\":null}}\\\"}\"}},{\"DisplayName\":\"Edit number value\",\"PresetId\":\"SetValueTree\",\"Id\":\"646352a8-b2aa-4f09-a5fd-7df067bcabde\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Register.Race\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"0a444d8e-eb2b-4c8c-9c40-1b374882d65f\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"SetValue\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"1.0\\\"}\"}},{\"DisplayName\":\"Edit number value\",\"PresetId\":\"SetValueTree\",\"Id\":\"0d9d961c-049c-4f3c-8a4c-98bffce5ef0f\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Start.Registration.Countdown\",\"Score\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"60fff6b9-dedb-4f91-be55-5b2f4c11843c\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"SetValue\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"0.0\\\"}\"}},{\"DisplayName\":\"Edit number value (1)\",\"PresetId\":\"SetValueTree\",\"Id\":\"fbf4b732-f2ce-48ff-8f5c-e6473e2c52e2\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Victory\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"0a444d8e-eb2b-4c8c-9c40-1b374882d65f\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"SetValue\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"0.0\\\"}\"}},{\"DisplayName\":\"Edit number value (3)\",\"PresetId\":\"SetValueTree\",\"Id\":\"635b7c57-811c-4525-a11c-1ae906934ec5\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Reset.Race\",\"Score\":\"{\\\"BlackboardType\\\":0,\\\"Id\\\":\\\"27ecd67b-8b49-4792-b464-9f2bb64069eb\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"SetValue\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"0.0\\\"}\"}}],\"DisplayName\":\"SET RACE STATS\",\"Description\":null,\"EnableDebugging\":false,\"Id\":\"f471551c-995c-4b78-852d-9937dea2f740\"}],\"version\":-1,\"dataID\":null}]}"
+  },
+  "Type": 0,
+  "Messages": {
+    "Version": 2,
+    "MajorVersion": 0,
+    "SaveData": "[{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[{\"Type\":\"Int\",\"DefaultValue\":0,\"DisplayName\":\"Player Number\",\"UIConfigParameters\":null}],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Register.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Start.Registration.Countdown\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Victory\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Reset.Race\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false}]"
+  },
+  "Fields": {
+    "Version": 10,
+    "MajorVersion": 0,
+    "SaveData": "{\"Fields\":[{\"Id\":\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Player Number\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"0\",\"FieldType\":1,\"IsPersistent\":false},{\"Id\":\"0a444d8e-eb2b-4c8c-9c40-1b374882d65f\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Registration\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"0\",\"FieldType\":1,\"IsPersistent\":false},{\"Id\":\"60fff6b9-dedb-4f91-be55-5b2f4c11843c\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"Racers In Game\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"0\",\"FieldType\":1,\"IsPersistent\":false},{\"Id\":\"27ecd67b-8b49-4792-b464-9f2bb64069eb\",\"BlackboardType\":0,\"IsSelectable\":true,\"FriendlyName\":\"STOPWATCH\",\"Mode\":1,\"ValueFormatId\":1,\"FieldValue\":\"{\\\"Timer\\\":0.0,\\\"TimerState\\\":0,\\\"TimerType\\\":0}\",\"FieldType\":4,\"IsPersistent\":false}],\"version\":-1,\"dataID\":null}"
+  }
+}
+
+    </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+  
+	
+	
+	
+	
+	<br><br> <!-- Adds space between buttons -->
+
+	<h3>RULES BOARD - CHECK PLAYER NUMBER</h3>
+	
+    <div><textarea style="display:none;" readonly>
+
+    {
+  "GameplayData": {
+    "Version": 27,
+    "MajorVersion": 0,
+    "SaveData": "{\"GameplayDatas\":[{\"ID\":\"e60dbfa2-998f-4ef2-bc05-6774766cb7ee\",\"RulesetDatas\":[{\"TreeDatas\":[{\"DisplayName\":\"Compare numbers (1)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"e69ea92a-d26d-4111-81df-b18ff79777fa\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"1.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP1\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"b49a856c-9566-45d4-9ef4-272b3ab164ee\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"2.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP2\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (2)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"eccce3b0-5a3b-44ea-a64b-70c8953dbb40\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"3.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP3\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (3)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"5221bfd3-45dd-4cc0-bccd-d9e20178568e\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"4.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP4\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (4)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"949fdf7e-4994-4df8-bb56-de805d339433\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"5.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP5\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (5)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"08c112e9-0612-4c34-9676-4f9a00cae76a\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"6.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP6\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (6)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"c54526f4-c77d-4032-a658-acb1e160df73\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"7.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP7\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (7)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"74ea9c5f-caa6-45a8-9b6a-3ef6fb19b18d\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"8.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP8\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (8)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"ba98eee1-db7b-41ec-9cb8-9a67f950b1c4\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"9.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP9\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (9)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"32924243-22ff-4f36-ad44-b255cadb5476\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"10.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP10\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (1)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"ed1a3591-54c6-4084-9262-a98c252d2f30\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"11.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP11\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"b0c4f2e9-d6db-488d-84da-0f69d50a4649\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"12.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP12\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (2)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"d7900b93-1e4d-4fce-a121-5872f851fe0c\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"13.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP13\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (3)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"adb47e48-2168-415b-a722-0545fa2ca837\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"14.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP14\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (4)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"2fb72601-6175-4b55-a1e8-a17c1f36988b\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"15.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP15\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (5)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"e983a068-1f47-44ca-874c-6787dee64c2f\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"16.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP16\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (6)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"8e72d71a-f775-45e8-ba96-8c436cab1f37\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"17.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP17\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (7)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"4a262036-c65d-490e-bced-b126b782276a\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"18.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP18\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (8)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"a68bee60-1c15-4446-a460-530549ed74a2\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"19.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP19\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}},{\"DisplayName\":\"Compare numbers (9)\",\"PresetId\":\"MessageOnAmountTree\",\"Id\":\"e21161f4-a544-4b7e-8a73-97e7b73cf1b6\",\"EnableDebugging\":false,\"TreeFieldData\":{\"TriggerMessage\":\"Check.Player.Number\",\"Score\":\"{\\\"BlackboardType\\\":1,\\\"Id\\\":\\\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\\\",\\\"Team\\\":0,\\\"HasTeam\\\":false}\",\"Equation\":\"0\",\"ValueSource\":\"{\\\"ValueSource\\\":2,\\\"SubSaveData\\\":\\\"20.0\\\"}\",\"CreateConditionalEvent\":\"False\",\"OutgoingMessage\":\"{\\\"MessageId\\\":\\\"TP20\\\",\\\"ArgumentsData\\\":[],\\\"BroadcastType\\\":null,\\\"Team\\\":null,\\\"Tags\\\":null}\"}}],\"DisplayName\":\"CHECK PLAYER NUMBER\",\"Description\":null,\"EnableDebugging\":false,\"Id\":\"8ab55826-eaa1-471f-a1fa-63ed1ff7b663\"}],\"version\":-1,\"dataID\":null}]}"
+  },
+  "Type": 0,
+  "Messages": {
+    "Version": 2,
+    "MajorVersion": 0,
+    "SaveData": "[{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP1\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP2\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP3\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP4\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP5\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP6\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP7\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP8\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP9\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP10\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP11\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP12\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP13\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP14\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP15\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP16\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP17\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP18\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP19\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"Check.Player.Number\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false},{\"Enabled\":true,\"SystemMessage\":false,\"Message\":\"TP20\",\"Color\":\"FFFFFFFF\",\"IsPermanent\":false,\"Version\":0,\"Parameters\":[],\"Tags\":[\"Default\"],\"HasColor\":false}]"
+  },
+  "Fields": {
+    "Version": 10,
+    "MajorVersion": 0,
+    "SaveData": "{\"Fields\":[{\"Id\":\"6bbc5c6b-7981-4ef4-9804-c9a2a5a9240e\",\"BlackboardType\":1,\"IsSelectable\":true,\"FriendlyName\":\"Player Number\",\"Mode\":1,\"ValueFormatId\":0,\"FieldValue\":\"0\",\"FieldType\":1,\"IsPersistent\":false}],\"version\":-1,\"dataID\":null}"
+  }
+}
+
+    </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+ 
+	
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+	<!-- Code Tab 2 -->
+    <div class="tab-content" id="tab2">
+        <h3>Avatar Portal 1</h3>
+        <div><textarea style="display:none;" readonly>
+
+        [{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"1"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["1"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		<h3>Avatar Portal 2</h3>
+        <div><textarea style="display:none;" readonly>
+
+		[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"2"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["2"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		<h3>Avatar Portal 3</h3>
+        <div><textarea style="display:none;" readonly>
+
+		[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"3"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["3"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		<h3>Avatar Portal 4</h3>
+        <div><textarea style="display:none;" readonly>
+
+		[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"4"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["4"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		<h3>Avatar Portal 5</h3>
+        <div><textarea style="display:none;" readonly>
+
+		[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"5"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["5"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		<h3>Avatar Portal 6</h3>
+        <div><textarea style="display:none;" readonly>
+
+		[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"6"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["6"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		<h3>Avatar Portal 7</h3>
+        <div><textarea style="display:none;" readonly>
+
+		[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"7"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["7"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		
+		<h3>Avatar Portal 8</h3>
+        <div><textarea style="display:none;" readonly>
+
+		[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"8"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["8"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		
+		<h3>Avatar Portal 9</h3>
+        <div><textarea style="display:none;" readonly>
+
+		[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"9"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["9"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		<h3>Avatar Portal 10</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"10"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["10"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		<h3>Avatar Portal 11</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"11"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["11"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		<h3>Avatar Portal 12</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"12"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["12"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		<h3>Avatar Portal 13</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"13"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["13"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		
+		<h3>Avatar Portal 14</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"14"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["14"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		
+		<h3>Avatar Portal 15</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"15"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["15"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		<h3>Avatar Portal 16</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"16"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["16"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		<h3>Avatar Portal 17</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"17"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["17"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		<h3>Avatar Portal 18</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"18"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["18"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+    
+
+
+
+
+
+
+		<h3>Avatar Portal 19</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"19"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["19"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+   
+
+
+
+
+
+		<h3>Avatar Portal 20</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"CustomAvatar","type":"Bool","value":false},{"fieldId":"AvatarModel","type":"HashedString","value":""},{"fieldId":"AssignTeam","type":"Bool","value":true},{"fieldId":"Team","type":"HashedString","value":"20"},{"fieldId":"MaxPlayers","type":"Int","value":3},{"fieldId":"Tags","type":"ListHashedString","value":["20"]},{"fieldId":"OverrideEquipments","type":"Bool","value":false},{"fieldId":"EquipRightHand","type":"HashedString","value":""},{"fieldId":"EquipLeftHand","type":"HashedString","value":""},{"fieldId":"EquipHead","type":"HashedString","value":""},{"fieldId":"EquipChest","type":"HashedString","value":""},{"fieldId":"EquipArms","type":"HashedString","value":""},{"fieldId":"EquipLegs","type":"HashedString","value":""},{"fieldId":"SpawnVolume","type":"HashedString","value":"Sphere"},{"fieldId":"VolumeSize","type":"Float","value":1.0},{"fieldId":"VolumeArea","type":"Float3","value":{"x":1.0,"y":1.0,"z":1.0}},{"fieldId":"AvatarComponents","type":"Bool","value":false}],"version":1,"dataID":"FSM_SpawnPoint"},"localClient":false,"behaviourID":"FSM_SpawnPoint","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+	<!-- Code Tab 3 -->
+    <div class="tab-content" id="tab3">
+        <h3>[MP]TriggerVolume - set player number - Duplicate 20 times and change number from 1 to 20</h3>
+        <div><textarea style="display:none;" readonly>
+
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"SpecificTagsInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Sphere"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":10.0,"y":10.0,"z":10.0}},{"fieldId":"DetectionRange","type":"Float","value":10.0},{"fieldId":"IncludeTags","type":"ListHashedString","value":["1"]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Player.Number",
+    "params": [
+      {
+        "Type": "Int",
+        "Value": 1,
+        "UIConfigParameters": null
+      }
+    ],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Player.Number",
+    "params": [
+      {
+        "Type": "Int",
+        "Value": 1,
+        "UIConfigParameters": null
+      }
+    ],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]
+
+
+   </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		
+		
+<h3>Asset 1 - [MP]Avatar Teleportation</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessageRequired","type":"ListHashedString","value":["TeleportToLobby"]},{"fieldId":"Destination","type":"HashedString","value":"197085b4-e294-45e7-870a-0de937596581"},{"fieldId":"InstantTeleport","type":"Bool","value":true},{"fieldId":"TeleportDelay","type":"Float","value":3.0},{"fieldId":"GroupTeleport","type":"Bool","value":false},{"fieldId":"GroupTeleportArea","type":"Float3","value":{"x":3.0,"y":3.0,"z":3.0}},{"fieldId":"BroadcastMessage","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":10.0},{"fieldId":"Tags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""}],"version":0,"dataID":"FSM_AvatarTeleport"},"localClient":false,"behaviourID":"FSM_AvatarTeleport","version":2,"dataID":"GameBehaviourData"}]     
+</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+<button onclick="copyCode(this)">Copy</button>
+
+
+
+
+
+<h3>Asset 1 - [MP]Actor Property Switcher</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"RequiredMessages","type":"ListHashedString","value":["Remove.Tags"]},{"fieldId":"ActivationType","type":"HashedString","value":"Fixed"},{"fieldId":"Properties","type":"HashedString","value":"Tags"},{"fieldId":"Collision","type":"Bool","value":false},{"fieldId":"Visible","type":"Bool","value":false},{"fieldId":"VisibleUI","type":"Bool","value":false},{"fieldId":"TagsToAdd","type":"ListHashedString","value":[]},{"fieldId":"TagsToRemove","type":"ListHashedString","value":["Racer"]},{"fieldId":"FilterMode","type":"HashedString","value":"SpecificTagsInRange"},{"fieldId":"FilterRange","type":"Float","value":12.0},{"fieldId":"FilterTags","type":"ListHashedString","value":["Avatar"]},{"fieldId":"FilterActors","type":"ListHashedString","value":[]}],"version":1,"dataID":"FSM_PropertyChanger"},"localClient":false,"behaviourID":"FSM_PropertyChanger","version":2,"dataID":"GameBehaviourData"}]    
+</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+<button onclick="copyCode(this)">Copy</button>
+		
+
+
+
+		
+		
+<h3>Asset 1 - Trigger Volume</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"EveryAvatarInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Sphere"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":10.0,"y":10.0,"z":10.0}},{"fieldId":"DetectionRange","type":"Float","value":8.0},{"fieldId":"IncludeTags","type":"ListHashedString","value":[]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Remove.Tags",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Remove.Tags",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"Self"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]   
+		</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+		<button onclick="copyCode(this)">Copy</button>		
+		
+		
+		
+
+
+
+<h3>Asset 2 - [MP]Message Broadcaster</h3>
+<div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"Message","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Start.Registration.Countdown",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":10.0},{"fieldId":"Tags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"DurationType","type":"HashedString","value":"Once"},{"fieldId":"Duration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0},{"fieldId":"WaitBeforeBroadcast","type":"Bool","value":true},{"fieldId":"WaitForMessages","type":"ListHashedString","value":["Register.Race"]},{"fieldId":"BroadcastOnlyOnce","type":"Bool","value":false}],"version":0,"dataID":"FSM_MessageBroadcaster"},"localClient":false,"behaviourID":"FSM_MessageBroadcaster","version":2,"dataID":"GameBehaviourData"}]
+</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+<button onclick="copyCode(this)">Copy</button>
+
+
+<h3>Asset 2 - [MP]Indicator</h3>
+<div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DisplayName","type":"HashedString","value":"<b>REGISTER FOR NEXT RACE"},{"fieldId":"DisplayInteract","type":"Bool","value":false},{"fieldId":"CustomMessage","type":"HashedString","value":"Interact"},{"fieldId":"QuestId","type":"HashedString","value":""},{"fieldId":"QuestCursors","type":"Bool","value":false},{"fieldId":"GiverQuest","type":"ListHashedString","value":[]},{"fieldId":"ObjectiveQuest","type":"ListHashedString","value":[]},{"fieldId":"ReceiverQuest","type":"ListHashedString","value":[]},{"fieldId":"DisplayDistance","type":"Bool","value":false},{"fieldId":"DistanceLimit","type":"Float","value":20.0},{"fieldId":"DisplayOver","type":"Bool","value":true},{"fieldId":"VisibilityDistance","type":"Float","value":22.0},{"fieldId":"VerticalOffset","type":"Float","value":1.25},{"fieldId":"DisplayArrow","type":"Bool","value":false},{"fieldId":"InteractVFX","type":"Bool","value":false}],"version":1,"dataID":"FSM_Indicator"},"localClient":false,"behaviourID":"FSM_Indicator","version":2,"dataID":"GameBehaviourData"}]
+</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+<button onclick="copyCode(this)">Copy</button>
+
+
+<h3>Asset 2 - [MP]Trigger Volume</h3>
+<div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"EveryAvatarInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Sphere"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":10.0,"y":10.0,"z":10.0}},{"fieldId":"DetectionRange","type":"Float","value":1.2},{"fieldId":"IncludeTags","type":"ListHashedString","value":[]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Register.Race",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Exit",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]
+</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+<button onclick="copyCode(this)">Copy</button>
+
+
+<h3>Asset 2 - [MP]Toggle</h3>
+<div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessageOn","type":"ListHashedString","value":["Reset.Race"]},{"fieldId":"MessageOff","type":"ListHashedString","value":["Start.Registration.Countdown"]},{"fieldId":"MessageToggle","type":"ListHashedString","value":[]},{"fieldId":"InitialBehaviorState","type":"Bool","value":true}],"version":0,"dataID":"FSM_Toggle"},"localClient":false,"behaviourID":"FSM_Toggle","version":2,"dataID":"GameBehaviourData"}]
+</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+<button onclick="copyCode(this)">Copy</button>
+
+
+
+
+<h3>Asset 3 - [SP]Visual FX - Sits on top of Asset 2</h3>
+<div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"VfxId","type":"HashedString","value":"MarkerGermetric"},{"fieldId":"Enable","type":"Bool","value":true},{"fieldId":"TurnOnMessages","type":"ListHashedString","value":["Reset.Race"]},{"fieldId":"TurnOffMessages","type":"ListHashedString","value":[]},{"fieldId":"VfxInstanceId","type":"Int","value":0},{"fieldId":"Offset","type":"Float3","value":{"x":0.0,"y":0.0,"z":0.0}},{"fieldId":"PlayOneShotField","type":"Bool","value":false},{"fieldId":"AttributeList","type":"ListCustom","value":{
+  "dataId": "VFXAttribute",
+  "data": []
+}}],"version":0,"dataID":"FSM_VFX"},"localClient":true,"behaviourID":"FSM_VFX","version":2,"dataID":"GameBehaviourData"}]</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+<button onclick="copyCode(this)">Copy</button>
+
+
+
+		
+		
+    </div>
+
+
+
+
+
+
+
+
+
+	<!-- Code Tab 4 -->
+    <div class="tab-content" id="tab4">
+        
+		<h3>[MP] Avatar Teleportation - Add settings then duplicate 20 times. Change message from TP1 to TP20</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessageRequired","type":"ListHashedString","value":["TP1"]},{"fieldId":"Destination","type":"HashedString","value":"807abbc7-0280-4f71-b88b-3a4c3d52c93d"},{"fieldId":"InstantTeleport","type":"Bool","value":true},{"fieldId":"TeleportDelay","type":"Float","value":3.0},{"fieldId":"GroupTeleport","type":"Bool","value":false},{"fieldId":"GroupTeleportArea","type":"Float3","value":{"x":3.0,"y":3.0,"z":3.0}},{"fieldId":"BroadcastMessage","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":10.0},{"fieldId":"Tags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""}],"version":0,"dataID":"FSM_AvatarTeleport"},"localClient":false,"behaviourID":"FSM_AvatarTeleport","version":2,"dataID":"GameBehaviourData"}]    
+	
+	</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+	<h3>Asset 1 - [MP] Actor Property Switcher - Adds Wall Collision + Visible</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"RequiredMessages","type":"ListHashedString","value":["Reset.Race"]},{"fieldId":"ActivationType","type":"HashedString","value":"Fixed"},{"fieldId":"Properties","type":"HashedString","value":"All"},{"fieldId":"Collision","type":"Bool","value":true},{"fieldId":"Visible","type":"Bool","value":true},{"fieldId":"VisibleUI","type":"Bool","value":false},{"fieldId":"TagsToAdd","type":"ListHashedString","value":[]},{"fieldId":"TagsToRemove","type":"ListHashedString","value":[]},{"fieldId":"FilterMode","type":"HashedString","value":"SpecificTagsInRange"},{"fieldId":"FilterRange","type":"Float","value":15.0},{"fieldId":"FilterTags","type":"ListHashedString","value":["Wall"]},{"fieldId":"FilterActors","type":"ListHashedString","value":[]}],"version":1,"dataID":"FSM_PropertyChanger"},"localClient":false,"behaviourID":"FSM_PropertyChanger","version":2,"dataID":"GameBehaviourData"}]
+	
+	</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>	
+		
+		
+		
+		<h3>Asset 2 - [MP] Actor Property Switcher - Remove Wall Collision + Visible</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"RequiredMessages","type":"ListHashedString","value":["Start.Race"]},{"fieldId":"ActivationType","type":"HashedString","value":"Fixed"},{"fieldId":"Properties","type":"HashedString","value":"All"},{"fieldId":"Collision","type":"Bool","value":false},{"fieldId":"Visible","type":"Bool","value":false},{"fieldId":"VisibleUI","type":"Bool","value":false},{"fieldId":"TagsToAdd","type":"ListHashedString","value":[]},{"fieldId":"TagsToRemove","type":"ListHashedString","value":[]},{"fieldId":"FilterMode","type":"HashedString","value":"SpecificTagsInRange"},{"fieldId":"FilterRange","type":"Float","value":20.0},{"fieldId":"FilterTags","type":"ListHashedString","value":["Wall"]},{"fieldId":"FilterActors","type":"ListHashedString","value":[]}],"version":1,"dataID":"FSM_PropertyChanger"},"localClient":false,"behaviourID":"FSM_PropertyChanger","version":2,"dataID":"GameBehaviourData"}]	
+	</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>	
+		
+		
+	
+	<h3>Asset 2 - [MP] Checkpoint</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessagesRequired","type":"ListHashedString","value":["CheckPoint"]},{"fieldId":"SaveProgression","type":"Bool","value":false},{"fieldId":"RespawnRange","type":"Float","value":0.0},{"fieldId":"MessageToSend","type":"HashedString","value":""},{"fieldId":"ResetToWaitForMessageId","type":"Bool","value":false},{"fieldId":"BroadcastType","type":"HashedString","value":"Self"},{"fieldId":"BroadcastRange","type":"Float","value":10.0},{"fieldId":"Tags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"Instigators","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"DurationType","type":"HashedString","value":"Once"},{"fieldId":"Duration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_Checkpoint"},"localClient":false,"behaviourID":"FSM_Checkpoint","version":2,"dataID":"GameBehaviourData"}]	
+	
+	
+	</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>	
+
+	
+		
+	<h3>Asset 2 - [MP] Trigger Volume</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"EveryAvatarInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Box"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":10.0,"y":5.0,"z":10.0}},{"fieldId":"DetectionRange","type":"Float","value":10.0},{"fieldId":"IncludeTags","type":"ListHashedString","value":[]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "CheckPoint",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Exit",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"Self"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]
+	
+	</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>	
+		
+		
+		
+		
+		
+<h3>Asset 3 - [MP] Actor Property Switcher - Adds Racer Tag to Avatars - Adjust Detection to cover Game Start Area</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"RequiredMessages","type":"ListHashedString","value":["Apply.Tags"]},{"fieldId":"ActivationType","type":"HashedString","value":"Fixed"},{"fieldId":"Properties","type":"HashedString","value":"Tags"},{"fieldId":"Collision","type":"Bool","value":false},{"fieldId":"Visible","type":"Bool","value":false},{"fieldId":"VisibleUI","type":"Bool","value":false},{"fieldId":"TagsToAdd","type":"ListHashedString","value":["Racer"]},{"fieldId":"TagsToRemove","type":"ListHashedString","value":[]},{"fieldId":"FilterMode","type":"HashedString","value":"SpecificTagsInRange"},{"fieldId":"FilterRange","type":"Float","value":17.0},{"fieldId":"FilterTags","type":"ListHashedString","value":["Avatar"]},{"fieldId":"FilterActors","type":"ListHashedString","value":[]}],"version":1,"dataID":"FSM_PropertyChanger"},"localClient":false,"behaviourID":"FSM_PropertyChanger","version":2,"dataID":"GameBehaviourData"}]	
+	
+	
+	</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>		
+		
+		
+		
+		
+    </div>
+
+
+
+
+
+
+
+	<!-- Code Tab 5 -->
+	
+    <div class="tab-content" id="tab5">
+	
+        <h3>Asset 1 - [MP]Trigger Volume - Detect Racers player - Adjust Detection range to cover the whole experience</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"SpecificTagsInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Box"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":55.0,"y":100.0,"z":55.0}},{"fieldId":"DetectionRange","type":"Float","value":10.0},{"fieldId":"IncludeTags","type":"ListHashedString","value":["Racer"]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Racer",
+    "params": [
+      {
+        "Type": "Int",
+        "Value": 1,
+        "UIConfigParameters": null
+      }
+    ],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Racer",
+    "params": [
+      {
+        "Type": "Int",
+        "Value": -1,
+        "UIConfigParameters": null
+      }
+    ],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"Rules"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+
+
+		
+		
+		 <h3>Asset 2 - [MP]Trigger Volume - Adjust Detection range to cover the whole experience </h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"EveryAvatarInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Box"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":55.0,"y":55.0,"z":55.0}},{"fieldId":"DetectionRange","type":"Float","value":10.0},{"fieldId":"IncludeTags","type":"ListHashedString","value":[]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "HUD",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Exit",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]      
+
+	  </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+<h3>Asset 2 - [MP]Speaker - Adjust Detection range to cover the whole experience</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"Text","type":"LongString","value":""},{"fieldId":"ShowTextDuration","type":"Float","value":1.0},{"fieldId":"AlwaysOnTop","type":"Bool","value":false},{"fieldId":"LookAtTarget","type":"Bool","value":false},{"fieldId":"SpeakCondition","type":"HashedString","value":"DetectEntity"},{"fieldId":"DetectionType","type":"HashedString","value":"SpecificTagsInRange"},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"IncludeTags","type":"ListHashedString","value":["Racer"]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"DetectionShape","type":"HashedString","value":"Sphere"},{"fieldId":"DetectionRange","type":"Float","value":100.0},{"fieldId":"DetectionArea","type":"Float3","value":{"x":10.0,"y":10.0,"z":10.0}},{"fieldId":"WaitForMessages","type":"ListHashedString","value":[]},{"fieldId":"BroadcastMessage","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "TeleportToLobby",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"OnlyOnce","type":"Bool","value":false}],"version":1,"dataID":"FSM_Speaker"},"localClient":false,"behaviourID":"FSM_Speaker","version":2,"dataID":"GameBehaviourData"}]     
+		
+		
+		</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>		
+		
+		
+		
+		
+<h3>Asset 2 - [MP]Plant - Save as preset "HUD" + Leave one copy in the middle of the experience</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessagesToDestroy","type":"ListHashedString","value":["Start.Registration.Countdown"]}],"version":0,"dataID":"FSM_Plant"},"localClient":false,"behaviourID":"FSM_Plant","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+
+
+
+<h3>Asset 3 - [MP]Trigger Volume -Adjust Detection range to cover the whole experience </h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"EveryAvatarInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Box"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":55.0,"y":55.0,"z":55.0}},{"fieldId":"DetectionRange","type":"Float","value":10.0},{"fieldId":"IncludeTags","type":"ListHashedString","value":[]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Registration.HUD",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Exit",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]      
+
+	  </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+<h3>Asset 3 - [MP]Plant - Save as preset "Registration HUD" then remove from the map</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessagesToDestroy","type":"ListHashedString","value":["Teleport.Players"]}],"version":0,"dataID":"FSM_Plant"},"localClient":false,"behaviourID":"FSM_Plant","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+
+
+
+
+
+	 <h3>Asset 4 - [MP]Trigger Volume - Adjust Detection range to cover the whole experience</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"EveryAvatarInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Box"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":55.0,"y":55.0,"z":55.0}},{"fieldId":"DetectionRange","type":"Float","value":10.0},{"fieldId":"IncludeTags","type":"ListHashedString","value":[]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Countdown.HUD",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Exit",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]      
+
+	  </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+<h3>Asset 4 - [MP]Plant - Save as preset "Countdown HUD" then remove from the map</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessagesToDestroy","type":"ListHashedString","value":["Start.Race"]}],"version":0,"dataID":"FSM_Plant"},"localClient":false,"behaviourID":"FSM_Plant","version":2,"dataID":"GameBehaviourData"}]   
+		
+		</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+
+
+
+
+
+		
+		
+		 <h3>Asset 5 - [MP]Trigger Volume - Adjust Detection range to cover the whole experience</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"EveryAvatarInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Box"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":55.0,"y":55.0,"z":55.0}},{"fieldId":"DetectionRange","type":"Float","value":10.0},{"fieldId":"IncludeTags","type":"ListHashedString","value":[]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Race.HUD",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Exit",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]
+       
+	   </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		 <h3>Asset 5 - [MP]Plant - Save as preset "Race HUD" then remove from the map</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessagesToDestroy","type":"ListHashedString","value":["Reset.Race"]}],"version":0,"dataID":"FSM_Plant"},"localClient":false,"behaviourID":"FSM_Plant","version":2,"dataID":"GameBehaviourData"}]
+        
+		
+		</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+	
+
+
+
+
+	
+		
+		
+		 <h3>Asset 6 - [MP]Asset Spawner - Spawn preset "Registration HUD" copypaste bug use Message "Start.Registration.Countdown"</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessageRequired","type":"ListHashedString","value":["Start.Registration.Countdown"]},{"fieldId":"SpawnOffset","type":"Float3","value":{"x":0.0,"y":1.0,"z":0.0}},{"fieldId":"UsePreset","type":"Bool","value":true},{"fieldId":"Preset","type":"HashedString","value":"db2ec2c5-9bde-43d5-b3bf-97ce6cc07c83"},{"fieldId":"AssetToSpawn","type":"HashedString","value":""},{"fieldId":"Behavior","type":"HashedString","value":""},{"fieldId":"Components","type":"ListHashedString","value":[]},{"fieldId":"Tags","type":"ListHashedString","value":[]},{"fieldId":"Physics","type":"HashedString","value":"Kinematic"},{"fieldId":"SpawnedOnlyOnce","type":"Bool","value":false},{"fieldId":"DelayBetweenSpawns","type":"Float","value":1.0}],"version":2,"dataID":"FSM_AssetSpawner"},"localClient":false,"behaviourID":"FSM_AssetSpawner","version":2,"dataID":"GameBehaviourData"}]        [{"blackboardData":{"blackboardFields":[{"fieldId":"MaxPlayers","type":"Int","value":3}]}}]
+
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		 <h3>Asset 7 - [MP]Asset Spawner - Spawn preset "Countdown HUD" copypaste bug use Message "Teleport.Players"</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessageRequired","type":"ListHashedString","value":["Teleport.Players"]},{"fieldId":"SpawnOffset","type":"Float3","value":{"x":0.0,"y":1.0,"z":0.0}},{"fieldId":"UsePreset","type":"Bool","value":true},{"fieldId":"Preset","type":"HashedString","value":"919bd517-5fd4-4198-9585-142fcb1da7f9"},{"fieldId":"AssetToSpawn","type":"HashedString","value":""},{"fieldId":"Behavior","type":"HashedString","value":""},{"fieldId":"Components","type":"ListHashedString","value":[]},{"fieldId":"Tags","type":"ListHashedString","value":[]},{"fieldId":"Physics","type":"HashedString","value":"Kinematic"},{"fieldId":"SpawnedOnlyOnce","type":"Bool","value":false},{"fieldId":"DelayBetweenSpawns","type":"Float","value":1.0}],"version":2,"dataID":"FSM_AssetSpawner"},"localClient":false,"behaviourID":"FSM_AssetSpawner","version":2,"dataID":"GameBehaviourData"}]        [{"blackboardData":{"blackboardFields":[{"fieldId":"MaxPlayers","type":"Int","value":3}]}}]
+
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		 <h3>Asset 8 - [MP]Asset Spawner - Spawn preset "Race HUD" copypaste bug use Message "Start.Race"</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessageRequired","type":"ListHashedString","value":["Start.Race"]},{"fieldId":"SpawnOffset","type":"Float3","value":{"x":0.0,"y":1.0,"z":0.0}},{"fieldId":"UsePreset","type":"Bool","value":true},{"fieldId":"Preset","type":"HashedString","value":"26c5dd52-aedc-461b-9221-c464d378ea12"},{"fieldId":"AssetToSpawn","type":"HashedString","value":""},{"fieldId":"Behavior","type":"HashedString","value":""},{"fieldId":"Components","type":"ListHashedString","value":[]},{"fieldId":"Tags","type":"ListHashedString","value":[]},{"fieldId":"Physics","type":"HashedString","value":"Kinematic"},{"fieldId":"SpawnedOnlyOnce","type":"Bool","value":false},{"fieldId":"DelayBetweenSpawns","type":"Float","value":1.0}],"version":2,"dataID":"FSM_AssetSpawner"},"localClient":false,"behaviourID":"FSM_AssetSpawner","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		 <h3>Asset 9 - [MP]Asset Spawner - Spawn preset "HUD" copypaste bug use Message "Reset.Race"</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessageRequired","type":"ListHashedString","value":["Reset.Race"]},{"fieldId":"SpawnOffset","type":"Float3","value":{"x":0.0,"y":1.0,"z":0.0}},{"fieldId":"UsePreset","type":"Bool","value":true},{"fieldId":"Preset","type":"HashedString","value":"0b8991c9-dd46-49f2-bc97-29c085fad9c8"},{"fieldId":"AssetToSpawn","type":"HashedString","value":""},{"fieldId":"Behavior","type":"HashedString","value":""},{"fieldId":"Components","type":"ListHashedString","value":[]},{"fieldId":"Tags","type":"ListHashedString","value":[]},{"fieldId":"Physics","type":"HashedString","value":"Kinematic"},{"fieldId":"SpawnedOnlyOnce","type":"Bool","value":false},{"fieldId":"DelayBetweenSpawns","type":"Float","value":1.0}],"version":2,"dataID":"FSM_AssetSpawner"},"localClient":false,"behaviourID":"FSM_AssetSpawner","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Code Tab 6 -->
+    <div class="tab-content" id="tab6">
+	
+	
+        <h3>Asset 1 - [MP]Victory</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"VictoryCondition","type":"HashedString","value":"OnReceiveMessage"},{"fieldId":"VictoryMessage","type":"ListHashedString","value":["Victory"]},{"fieldId":"TagsToCollide","type":"ListHashedString","value":["Avatar"]},{"fieldId":"VictoryType","type":"HashedString","value":"Individual"},{"fieldId":"ShouldEndGame","type":"Bool","value":false},{"fieldId":"ResetMessage","type":"ListHashedString","value":["TeleportToLobby"]},{"fieldId":"AnimateCamera","type":"Bool","value":true},{"fieldId":"HasDelayBeforeTriggering","type":"Bool","value":false},{"fieldId":"DelayTimeInSeconds","type":"Float","value":4.0}],"version":3,"dataID":"FSM_Victory"},"localClient":false,"behaviourID":"FSM_Victory","version":2,"dataID":"GameBehaviourData"}]
+      
+	  </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		   <h3>Asset 1 - [MP]Trigger Volume</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"EveryAvatarInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Box"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":2.0,"y":2.0,"z":2.0}},{"fieldId":"DetectionRange","type":"Float","value":10.0},{"fieldId":"IncludeTags","type":"ListHashedString","value":[]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Set.Victory",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Exit",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		
+		   <h3>Asset 1 - [MP]Plant - Save as preset "Finish Flag"</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessagesToDestroy","type":"ListHashedString","value":["Teleport.Players"]}],"version":0,"dataID":"FSM_Plant"},"localClient":false,"behaviourID":"FSM_Plant","version":2,"dataID":"GameBehaviourData"}]
+       
+
+	   </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		
+		   <h3>Asset 2 - [MP]Asset Spawner - Spawn preset "Finish Flag"</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessageRequired","type":"ListHashedString","value":["Start.Race"]},{"fieldId":"SpawnOffset","type":"Float3","value":{"x":0.0,"y":0.0,"z":0.0}},{"fieldId":"UsePreset","type":"Bool","value":true},{"fieldId":"Preset","type":"HashedString","value":"6fa11e22-7cad-4182-98b4-df2d83bedbba"},{"fieldId":"AssetToSpawn","type":"HashedString","value":""},{"fieldId":"Behavior","type":"HashedString","value":""},{"fieldId":"Components","type":"ListHashedString","value":[]},{"fieldId":"Tags","type":"ListHashedString","value":[]},{"fieldId":"Physics","type":"HashedString","value":"Kinematic"},{"fieldId":"SpawnedOnlyOnce","type":"Bool","value":false},{"fieldId":"DelayBetweenSpawns","type":"Float","value":1.0}],"version":2,"dataID":"FSM_AssetSpawner"},"localClient":false,"behaviourID":"FSM_AssetSpawner","version":2,"dataID":"GameBehaviourData"}]        [{"blackboardData":{"blackboardFields":[{"fieldId":"Tags","type":"ListHashedString","value":["1"]}]}}]
+
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		   <h3>Asset 3 - [MP]Trigger Volume - This asset is a checkpoint, need only if your game uses it.</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"DetectionType","type":"HashedString","value":"EveryAvatarInRange"},{"fieldId":"DetectionShape","type":"HashedString","value":"Box"},{"fieldId":"DetectionArea","type":"Float3","value":{"x":2.0,"y":2.0,"z":2.0}},{"fieldId":"DetectionRange","type":"Float","value":10.0},{"fieldId":"IncludeTags","type":"ListHashedString","value":[]},{"fieldId":"ExcludeTags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"EntitiesInRange","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesEntered","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"EntitiesExited","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"BroadcastMessageEnter","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Trigger.CheckPoint",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastMessageExit","type":"MessageArgs","value":{
+  "dataId": "MessageArgs",
+  "data": {
+    "message": "Exit",
+    "params": [],
+    "version": 0
+  }
+}},{"fieldId":"BroadcastType","type":"HashedString","value":"Self"},{"fieldId":"BroadcastRange","type":"Float","value":12.0},{"fieldId":"BroadcastArea","type":"Float3","value":{"x":12.0,"y":12.0,"z":12.0}},{"fieldId":"BroadcastTags","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTargets","type":"ListHashedString","value":[]},{"fieldId":"BroadcastTeam","type":"HashedString","value":""},{"fieldId":"BroadcastDurationType","type":"HashedString","value":"Once"},{"fieldId":"BroadcastDuration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_TriggerVolume"},"localClient":false,"behaviourID":"FSM_TriggerVolume","version":2,"dataID":"GameBehaviourData"}]
+        </textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+		
+		
+		
+		
+			   <h3>Asset 3 - [MP]Checkpoint - Save as preset "checkpoint" to use around the experience</h3>
+        <div><textarea style="display:none;" readonly>
+
+[{"blackboardData":{"blackboardFields":[{"fieldId":"MessagesRequired","type":"ListHashedString","value":["Trigger.CheckPoint"]},{"fieldId":"SaveProgression","type":"Bool","value":false},{"fieldId":"RespawnRange","type":"Float","value":0.0},{"fieldId":"MessageToSend","type":"HashedString","value":""},{"fieldId":"ResetToWaitForMessageId","type":"Bool","value":false},{"fieldId":"BroadcastType","type":"HashedString","value":"All"},{"fieldId":"BroadcastRange","type":"Float","value":10.0},{"fieldId":"Tags","type":"ListHashedString","value":[]},{"fieldId":"Targets","type":"ListHashedString","value":[]},{"fieldId":"Team","type":"HashedString","value":""},{"fieldId":"Instigators","type":"ListCustom","value":{
+  "dataId": "DetectedEntityInfo",
+  "data": []
+}},{"fieldId":"DurationType","type":"HashedString","value":"Once"},{"fieldId":"Duration","type":"Float","value":0.0},{"fieldId":"DelayBetweenBroadcasts","type":"Float","value":0.0}],"version":0,"dataID":"FSM_Checkpoint"},"localClient":false,"behaviourID":"FSM_Checkpoint","version":2,"dataID":"GameBehaviourData"}]
+        
+		</textarea> <button onclick="copyCode(this)">Copy</button> <button onclick="toggleCode(this)">Show Code</button></div>
+        <button onclick="copyCode(this)">Copy</button>
+		
+	
+
+
+	
+    </div>
+
+
+
+
+
+
+
+
+
+    <script>
+        function copyCode(button) {
+            let codeBox = button.previousElementSibling; // Get the textarea before the button
+            navigator.clipboard.writeText(codeBox.value.trim()).then(() => {
+                button.textContent = "Copied! ✅"; // Change button text
+                setTimeout(() => button.textContent = "Copy", 2000); // Reset after 2 sec
+            });
+        }
+
+        function switchTab(tabIndex) {
+            // Hide all tab content
+            document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+            // Show the selected tab
+            document.getElementById("tab" + tabIndex).classList.add("active");
+
+            // Update tab styling
+            document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
+            document.querySelectorAll(".tab")[tabIndex - 1].classList.add("active");
+        }
+    </script>
+
+
+<script>
+function toggleCode(button) {
+    var container = button.parentElement;
+    var textarea = container.querySelector("textarea");
+    if (textarea.style.display === "none" || textarea.style.display === "") {
+        textarea.style.display = "block";
+        button.textContent = "Hide Code";
+    } else {
+        textarea.style.display = "none";
+        button.textContent = "Show Code";
+    }
+}
+</script>
+</body>
+</html>
